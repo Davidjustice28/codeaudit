@@ -14,11 +14,7 @@ import (
 func main() {
 	var fileType string
 	var action string
-	dir, _ := os.Getwd()
-	fmt.Printf("Current working directory: %s", dir)
-	// var displayIssues bool
-	// var displayChecks bool
-	// var displayFullReport bool
+
 	terminalArgs := os.Args[1:]
 	if len(terminalArgs) == 0 {
 		fileType = ".js"
@@ -35,7 +31,10 @@ func main() {
 		// println("action", terminalArgs[0], "flag", terminalArgs[1])
 		action = terminalArgs[0]
 		isFlag, err := regexp.MatchString("-", terminalArgs[1])
+
 		if err != nil {
+			fmt.Println("err 2")
+
 			panic(err)
 		}
 
@@ -55,25 +54,18 @@ func main() {
 				fileType = ".js"
 			}
 
-			// numOfOptions := len(options)
-			// if numOfOptions == 2 {
-
-			// }
-
-			// if numOfOptions == 3 {
-
-			// }
-
 		} else {
+			fmt.Println("err 3")
+
 			panic("Unknown value for flag found")
 		}
 	}
 
 	if action == "runchecks" {
 		func() {
-			rootDirectory := "./test_javascript"
-			filesToCheck := []string{}
-			files := utils.GetCorrectFiles(fileType, filesToCheck, rootDirectory)
+			root_directory := "./"
+			files := utils.GetCorrectFiles(root_directory, fileType)
+
 			// fmt.Printf("%s files found to test\n", ".js")
 			// for i := 0; i < len(files); i++ {
 			// 	println(files[i])

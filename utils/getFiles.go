@@ -1,33 +1,31 @@
 package utils
 
 import (
-	// "io/fs"
-
-	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
 )
 
-func GetCorrectFiles(extension string, files []string, root string) []string {
-	base := root
-
-	err := filepath.Walk(root, func(path string, f os.FileInfo, err error) error {
-		if f.IsDir() && f.Name() != strings.Split(root, "./")[1] {
-			base = fmt.Sprintf("%s/%s", base, f.Name())
-			// fmt.Println(base)
-		}
-		if filepath.Ext(path) == extension {
-			fileRelativePath := fmt.Sprintf("%s/%s", base, f.Name())
-			files = append(files, fileRelativePath)
+func GetCorrectFiles(root string, extension string) []string {
+	files := []string{}
+	err := filepath.Walk(root, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
 		}
 
+		if strings.Contains(path, extension) {
+			files = append(files, path)
+		}
+
+		// fmt.Println(path)
 		return nil
 	})
 
 	if err != nil {
-		panic(err)
+		log.Println(err)
 	}
 
+	// fmt.Printf("files found %q", files)
 	return files
 }
