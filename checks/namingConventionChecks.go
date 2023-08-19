@@ -9,7 +9,8 @@ import (
 	"regexp"
 	"strings"
 
-	"example.com/models"
+	"codeAudit/models"
+
 	"github.com/dariubs/percent"
 )
 
@@ -18,14 +19,14 @@ func RunNamingConventionCheck(filePath string, style string) models.CheckResult 
 	camelCaseRegex := regexp.MustCompile("^[a-z0-9]+([A-Z].*)*$")
 	snake_case_regex := regexp.MustCompile(`^[a-z0-9](\_[a-z0-9])*$`)
 	pascalCaseRegex := regexp.MustCompile(`^[A-Z][a-z0-9]*([A-Z].*)*$`)
-	if style == "camelCase" {
+	if style == "camel" {
 		rg = camelCaseRegex
 	}
-	if style == "snakeCase" {
+	if style == "snake" {
 		rg = snake_case_regex
 	}
 
-	if style == "pascalCase" {
+	if style == "pascal" {
 		rg = pascalCaseRegex
 	}
 	f, err := os.Open(filePath)
@@ -74,7 +75,7 @@ func RunNamingConventionCheck(filePath string, style string) models.CheckResult 
 	return result
 }
 
-func MakeConventionChecks(files []string, variableNamingConvention string) models.CompleteCheckResult {
+func MakeNamingConventionChecks(files []string, variableNamingConvention string) models.CompleteCheckResult {
 	scores := []int{}
 	issues := []models.IssueData{}
 	for i := 0; i < len(files); i++ {

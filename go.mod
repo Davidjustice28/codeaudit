@@ -1,4 +1,4 @@
-module example.com
+module codeAudit
 
 go 1.20
 
