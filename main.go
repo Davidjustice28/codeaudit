@@ -12,8 +12,6 @@ import (
 	"codeAudit/utils"
 )
 
-//TODO: character count checks
-
 func main() {
 	var fileType string
 	var check string
@@ -21,7 +19,6 @@ func main() {
 	defaultCharacterLimit := 100
 	defaultVariableNamingConvention := "camel"
 	defaultIndentationSpaces := 2
-	// root_directory := "/Users/david/Programming/projects/practice-projects/git-practice-project/"
 
 	terminalArgs := os.Args[1:]
 	if len(terminalArgs) == 0 {
@@ -30,7 +27,6 @@ func main() {
 	}
 
 	if len(terminalArgs) >= 1 {
-		// println("action", terminalArgs[0])
 		if !utils.IsConfigOption(terminalArgs[0]) {
 			check = terminalArgs[0]
 		}
@@ -38,7 +34,6 @@ func main() {
 	}
 
 	if len(terminalArgs) >= 2 {
-		// println("action", terminalArgs[0], "flag", terminalArgs[1])
 
 		if !utils.IsConfigOption(terminalArgs[1]) {
 			if !utils.IsConfigOption(terminalArgs[0]) {
@@ -81,8 +76,6 @@ func main() {
 		}
 	}
 
-	//TODO: Make it so users can do i=2, c=40, n=camel
-
 	println("terminal arguments received")
 	for a := 0; a < len(terminalArgs); a++ {
 		arg := terminalArgs[a]
@@ -117,7 +110,7 @@ func main() {
 			}
 		}
 	}
-
+	// TODO: Use report object to generate pdf or csv report
 	var report models.ConsistencyReport
 	checksRan := true
 

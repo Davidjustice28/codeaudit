@@ -9,11 +9,8 @@ import (
 func PerformAllChecks(root_directory string, fileType string, name_convention string, indentation int, char_count int) models.ConsistencyReport {
 	files := utils.GetCorrectFiles(root_directory, fileType)
 
-	// FIXME: make naming convention style an optional terminal arg not hard coded
 	result1 := MakeNamingConventionChecks(files, name_convention)
-	// FIXME: make spaces an optional terminal arg not hard coded
 	result2 := MakeIndentionChecks(files, indentation)
-	// FIXME: make spaces an optional terminal arg not hard coded
 	result3 := MakeCharacterCountChecks(files, char_count)
 
 	results := []models.CompleteCheckResult{result1, result2, result3}
@@ -25,7 +22,6 @@ func PerformAllChecks(root_directory string, fileType string, name_convention st
 	issues = append(issues, result2.IssuesFound...)
 	issues = append(issues, result3.IssuesFound...)
 
-	// FIXME: use full report object to create reports
 	fullReport := models.ConsistencyReport{IssuesFound: issues, CheckResults: results, Checks: checksMade, CodeBaseConsistencyScore: totalScore}
 	for r := 0; r < len(results); r++ {
 		resultEntry := results[r]
@@ -39,7 +35,6 @@ func PerformAllChecks(root_directory string, fileType string, name_convention st
 func PerformCharacterCountChecks(root_directory string, fileType string, char_count int) models.ConsistencyReport {
 	files := utils.GetCorrectFiles(root_directory, fileType)
 
-	// FIXME: make spaces an optional terminal arg not hard coded
 	result1 := MakeCharacterCountChecks(files, char_count)
 
 	results := []models.CompleteCheckResult{result1}
@@ -48,7 +43,6 @@ func PerformCharacterCountChecks(root_directory string, fileType string, char_co
 	issues = append(issues, result1.IssuesFound...)
 	totalScore := result1.FinalConsistencyScore
 
-	// FIXME: use full report object to create reports
 	fullReport := models.ConsistencyReport{IssuesFound: issues, CheckResults: results, Checks: checksMade, CodeBaseConsistencyScore: totalScore}
 	for r := 0; r < len(results); r++ {
 		resultEntry := results[r]
@@ -61,7 +55,6 @@ func PerformCharacterCountChecks(root_directory string, fileType string, char_co
 func PerformVariableNamingChecks(root_directory string, fileType string, name_convention string) models.ConsistencyReport {
 	files := utils.GetCorrectFiles(root_directory, fileType)
 
-	// FIXME: make naming convention style an optional terminal arg not hard coded
 	result1 := MakeNamingConventionChecks(files, name_convention)
 
 	results := []models.CompleteCheckResult{result1}
@@ -70,7 +63,6 @@ func PerformVariableNamingChecks(root_directory string, fileType string, name_co
 	issues = append(issues, result1.IssuesFound...)
 	totalScore := result1.FinalConsistencyScore
 
-	// FIXME: use full report object to create reports
 	fullReport := models.ConsistencyReport{IssuesFound: issues, CheckResults: results, Checks: checksMade, CodeBaseConsistencyScore: totalScore}
 	for r := 0; r < len(results); r++ {
 		resultEntry := results[r]
@@ -83,7 +75,6 @@ func PerformVariableNamingChecks(root_directory string, fileType string, name_co
 func PerformIndentationChecks(root_directory string, fileType string, indentation int) models.ConsistencyReport {
 	files := utils.GetCorrectFiles(root_directory, fileType)
 
-	// FIXME: make spaces an optional terminal arg not hard coded
 	result1 := MakeIndentionChecks(files, indentation)
 
 	results := []models.CompleteCheckResult{result1}
@@ -92,7 +83,6 @@ func PerformIndentationChecks(root_directory string, fileType string, indentatio
 	issues = append(issues, result1.IssuesFound...)
 	totalScore := result1.FinalConsistencyScore
 
-	// FIXME: use full report object to create reports
 	fullReport := models.ConsistencyReport{IssuesFound: issues, CheckResults: results, Checks: checksMade, CodeBaseConsistencyScore: totalScore}
 	for r := 0; r < len(results); r++ {
 		resultEntry := results[r]
