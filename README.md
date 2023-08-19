@@ -59,8 +59,20 @@ _<small> <span>__Cool Fact:__</span> You can also install package globally by se
 | Check Type | The type of check you would like to make  |  all, indent, naming, char. Default: all|
 | Flag | Dictates type file extension to query for | j (javascript), p (python), t (typescript), g (golang). Default: j |
 | Path | Path to desired desired directory to recursively search through for files| default ./ (cwd)|
-|Config Initial| Initials determines configure option to set| i (indentation - integer), n (naming convention **), and c (character count limit - integer)|
+|Config Initial| Initials determines configure option to set| i (indentation - integer), n (naming convention **), c (character count limit - integer), and r (generate report boolean) |
 |Config Value| Value to assign to desired config option| c and i are integers only, see ** below for n|
 
 <br>
 \** Naming Conventions available - pascal (PascalCase), snake (snake_case), and camel (camelCase)
+
+
+## Reports
+
+This tool generates a simple failure report in the form of a a csv file called `codeAuditReport.csv`. This file after running the commands above will be found downloads folder in file system. It will list all files that had a failed validation checks and helpful information (like line number where errored), to help with debug and addressing syntax errors.
+
+__Format__ : File Path, Line Number (where error occurred), Check Made (that failed), and issue (message clarifying error).
+
+
+### Feedback Encouraged!
+
+Please create any issues on this repo if you experience any bugs or have a feature suggestion. Looking to really grow this tool into something truly helpful for developers.

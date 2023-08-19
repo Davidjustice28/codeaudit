@@ -13,6 +13,25 @@ import (
 )
 
 func main() {
+	downloadsFolderPath := "./"
+	userHomeDir, userHomeErr := os.UserHomeDir()
+	shouldGenerateFailureReport := true
+	if userHomeErr != nil {
+		println("user home dir get err", userHomeErr)
+	}
+	fmt.Printf("home dir %s", userHomeDir)
+	system := utils.GetOs()
+	if system == "darwin" {
+		downloadsFolderPath = fmt.Sprintf("%s/Downloads", userHomeDir)
+	}
+
+	if system == "windows" {
+		downloadsFolderPath = fmt.Sprintf("%s/Downloads", userHomeDir)
+	}
+
+	if system == "linux" {
+		downloadsFolderPath = fmt.Sprintf("/home%s/Downloads", userHomeDir)
+	}
 	var fileType string
 	var check string
 	root_directory := "./"
@@ -107,6 +126,13 @@ func main() {
 				} else {
 					defaultVariableNamingConvention = value
 				}
+			case "r":
+				willGenerateReport, err := strconv.ParseBool(value)
+				if err != nil {
+					fmt.Printf("%s isn't a valid boolean value\n", value)
+				} else {
+					shouldGenerateFailureReport = willGenerateReport
+				}
 			}
 		}
 	}
@@ -130,9 +156,11 @@ func main() {
 
 	if checksRan {
 		fmt.Printf("Number of issues found: %d\n", len(report.IssuesFound))
-		reportCreated := utils.GenerateFailureReport(report)
-		if !reportCreated {
-			println("Error occurred while generating report")
+		if shouldGenerateFailureReport {
+			reportCreated := utils.GenerateFailureReport(report, downloadsFolderPath)
+			if !reportCreated {
+				println("Error occurred while generating report")
+			}
 		}
 	}
 }
