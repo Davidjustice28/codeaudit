@@ -130,5 +130,9 @@ func main() {
 
 	if checksRan {
 		fmt.Printf("Number of issues found: %d\n", len(report.IssuesFound))
+		reportCreated := utils.GenerateFailureReport(report)
+		if !reportCreated {
+			println("Error occurred while generating report")
+		}
 	}
 }
