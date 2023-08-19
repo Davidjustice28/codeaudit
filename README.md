@@ -25,7 +25,7 @@ Currently only works with Javascript files, but other languages will be availabl
 - TypeScript
 - Go
 
-## Startup Instructions 
+## Startup Instructions  
 
 ### Basic Example:
 
@@ -44,7 +44,7 @@ This example will run naming convention checks on the current working directory 
 
 _<small> <span>__Cool Fact:__</span> You can also install package globally by setting the PATH variable in terminal to allow using this tool anywhere. Refer to this Golang [Documentation]('https://go.dev/doc/tutorial/compile-install) on how to do so</small>_
 
-
+\* _Must have Go install on local machine_
 
 ## Command Line Syntax
 
