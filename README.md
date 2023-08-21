@@ -31,15 +31,15 @@ Currently only works with Javascript files, but other languages will be availabl
 
 ```shell
 go build
-./codeAudit runchecks -j
+./codeAudit indent -j
 
 // To pick desired output folder name
 
 go build -o [DESIRED_NAME_OF_EXECUTABLE]
-./[DESIRED_NAME_OF_EXECUTABLE] runchecks -j
+./[DESIRED_NAME_OF_EXECUTABLE] [DESIRED_CHECK] -j
 ```
 
-This example will run naming convention checks on the current working directory and display the overall score for your cwd's javascript files. It will also generate a full report in your download folder.
+This example will run indentation checks on the current working directory and display the overall score for your cwd's javascript files. It will also generate a full report in your download folder.
 
 
 _<small> <span>__Cool Fact:__</span> You can also install package globally by setting the PATH variable in terminal to allow using this tool anywhere. Refer to this Golang [Documentation]('https://go.dev/doc/tutorial/compile-install) on how to do so</small>_
